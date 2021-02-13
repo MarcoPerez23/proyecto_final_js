@@ -1,75 +1,93 @@
-//Variables utiles 
-//Precio base de la cotización, en quetzales, lo puede cambiar
+//Programa de cotizacion automatica Seguros TK-U
+
 var precio_base = 2000
 
-//Valores de los recargos 
-var edad_18 = 0.1 // 10%
-var edad_25 = 0.2 // 20%
-var edad_50 = 0.3 // 30%
+//Valores de los recargos
+var edad_18 = 0.1
+var edad_25 = 0.2
+var edad_50 = 0.3
 
-var casado_18 = 0.1 // 10%
-var casado_25 = 0.2 // 20%
-var casado_50 = 0.3 // 30%
+var casado_18 = 0.1
+var casado_25 = 0.2
+var casado_50 = 0.3
 
-var hijos_recargo = 0.2 // 20%
+var hijos_recargo = 0.2
+var propiedades_recargo = 0.35
+var salario_recargo = 0.05
 
 
 //Recargo
-var recargo = 0
+var recargo_extra = 0
 var recargo_total = 0
 
-//Precio final 
+//Precio final
 var precio_final = 0
 
-//Mensajes de alerta para ingresar datos 
-var nombre = prompt("Ingrese su nombre, por favor")
-var edad = prompt("¿Cuantos años tiene? Ingrese solamente números ")
+ // Inicio
+alert("Bienvenid@ al Cotizador Automatico de Seguros TK-U")
 
-var casado = prompt("¿Está casado actualmente?")
-//Comprobamos la edad del cónyuge, solamente si se está casado/a
-var edad_conyuge
-if("SI" == casado.toUpperCase()){
-  edad_conyuge = prompt("¿Que edad tiene su esposo/a?", "si/no")
-}
-//convirtiendo las edades ingresadas a números 
-var edad_numero = parseInt(edad)
-var edad_conyuge_numero = 0
-//convirtiendo la edad del cónyuge si se esta casado/a
-if("SI" == casado.toUpperCase()){
-  edad_conyuge_numero = parseInt(edad_conyuge)
+var nombre_cliente = prompt("Cual es su nombre")
+
+var edad_cliente = prompt("Por favor, ingrese su edad en numeros: ")
+
+// verificador de mayores de 18
+if (edad_cliente > 18) {
+  calcular()
+} else {
+  alert("Servicio para mayores de edad. Gracias por sucomprension.")
 }
 
-var hijos = prompt("¿Tiene hijos o hijas?")
-//Comprobamos la cantidad de hijos solamente si los tienen
-var cantidad_hijos
-/**
- * 1. convierta la cantidad de hijos a numero
- */
+//funcion para ingreso de datos y calculo de recargos
+function calcular(){
 
-//Aquí debe calcular el recargo total basado en las respuestas ingresadas
+  var conyuge = prompt("Si esta casad@, por favor ingrese la edad de su conyuge en numeros. De lo contrario ingrese no.")
 
-//Aquí es donde debe de calcular los recargos y el valor final
-//Ejemplo (Debe completar los condicionales): Recargo por edad del asegurado 
-if(edad_numero>=18 && edad_numero<25){
-  //Calculamos el recargo en base a la edad 
-  recargo = precio_base * edad_18
-  //Sumamos todos los recargos que hemos obtenido
-  recargo_total = recargo_total + recargo
+  var hijos =  prompt("Si tiene hijos, por favor ingrese la cantidad de hijos en numeros. De lo contrario ingrese no.")
+
+  var propiedades = prompt("Si tiene propiedades a su nombre, por favor ingrese el precio de cotizacion de sus propiedades. De lo contrario ingrese no.")
+
+  var salario = prompt("Si posee un salario fijo, por favor ingrese la cantidad en numeros. De lo contrario ingrese no.")
+
+//calculo del recargo por la edad del cliente
+  if (edad_cliente >= 18 && edad_cliente < 25) {
+    recargo_total += precio_base * edad_18
+  } else if (edad_cliente >= 25 && edad_cliente < 50) {
+    recargo_total += precio_base * edad_25
+  } else if (edad_cliente > 50) {
+    recargo_total += precio_base * edad_50
+  }
+
+//calculo del recargo por edad del conyuge
+  if (conyuge >= 18 && conyuge < 25) {
+    recargo_total += precio_base * casado_18
+  } else if (conyuge >= 25 && conyuge < 50) {
+    recargo_total += precio_base * casado_25
+  } else if (conyuge > 50) {
+    recargo_total += precio_base * casado_25
+  }
+
+//recargo por hijos
+  if (hijos != "no") {
+    recargo_extra += (hijos * hijos_recargo)
+  }
+
+//recargos extras
+  if (propiedades != "no") {
+    recargo_extra += propiedades * propiedades_recargo
+  }
+
+  if (salario != "no") {
+    recargo_extra += salario * salario_recargo
+  }
+
+//suma total de valores
+  precio_final = precio_base + recargo_total + recargo_extra
+
+//mensaje de respuesta con los valores calculados
+  alert("Gracias por utulizar el Cotizador Automatico de Seguros TK-U" + "\n" +
+        "El precio base es de: Q." + precio_base + "\n" +
+        "Su recargo base es de: Q." + recargo_total + "\n" +
+        "El recargo salarial y de inmuebles es: Q." + recargo_extra + "\n" +
+        "El total de su seguro es de: Q." + precio_final + ".")
+  alert("Gracias por utilizar nuesro servicio")
 }
-//aqui puede colocar un else if() con el siguiente rango
-
-/** 
- * 2. Recargo por la edad del conyuge
- */
-
-/**
- * 3. Recargo por la cantidad de hijos 
- */ 
-
-
-precio_final = precio_base + recargo_total
-//Resultado
-alert ("Para el asegurado "+nombre)
-alert ("El recargo total sera de: "+recargo_total)
-alert ("El precio sera de: "+precio_final)
-
