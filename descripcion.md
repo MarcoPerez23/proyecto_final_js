@@ -1,4 +1,4 @@
-# Universidad Galileo ![alt text](https://www.galileo.edu/wp-content/themes/galileo-theme/img/logo-header.png "UG")
+# ![alt text](https://www.galileo.edu/wp-content/themes/galileo-theme/img/logo-header.png "UG") Universidad Galileo
 ## Descripcion del proyecto final
 ### Introduccion al Desarrollo de Software
 
