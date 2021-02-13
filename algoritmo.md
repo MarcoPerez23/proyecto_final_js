@@ -1,6 +1,6 @@
 # ![alt text](https://www.galileo.edu/wp-content/themes/galileo-theme/img/logo-header.png "UG") Universidad Galileo
-## Algoritmo del proyecto final
-### Introduccion al Desarrollo de Software
+## Introduccion al Desarrollo de Software
+### Algoritmo del proyecto final
 
 1. preguntar el nombre
 ..* para identificacion 
