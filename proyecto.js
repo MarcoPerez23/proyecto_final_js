@@ -68,7 +68,7 @@ function calcular(){
 
 //recargo por hijos
   if (hijos != "no") {
-    recargo_extra += (hijos * hijos_recargo)
+    recargo_total += (hijos * hijos_recargo) * precio_base
   }
 
 //recargos extras
